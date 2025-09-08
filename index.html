@@ -97,9 +97,37 @@
       </div>
     </section>
     <!-- campain and card section  section starts  -->
-    <section class="bg-[#f0fdf4] max-w-[1280px] m-auto py-8">
+    <section class="bg-[#f0fdf4] max-w-[1280px] m-auto py-8 px-9">
       <h1 class="text-2xl font-bold text-center my-8">Choose Your Trees</h1>
-      <div class=""></div>
+      <!-- test modal  -->
+      
+      <div>
+        <div class="flex justify-between">
+          <!-- button container sectin  -->
+          <div id="btnContainer" class=""></div>
+          <!-- card container section  -->
+          <div id="cardContainer" class="grid grid-cols-3 gap-4"></div>
+          <div class="bg-white py-2 px-2.5">
+            <!-- curt history section  -->
+            <h1 class="text-2xl font-bold">Your Curt</h1>
+            <div class="gap-x-3.5" id="cartContainr">
+            </div>
+          </div>
+        </div>
+        <!-- modal section -->
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <div id="titleOfModal"></div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </div>
       <!-- campain section  -->
       <h1 class="text-2xl font-bold text-center my-8">About the Campaign</h1>
       <div class="max-w-[900px] m-auto">
