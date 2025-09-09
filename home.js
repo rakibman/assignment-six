@@ -1,12 +1,31 @@
 // ByClicking on button load tree data
+const cardContainers = document.getElementById("cardContainer");
 const loadTree = (id) => {
-  const cardContainers = document.getElementById("cardContainer");
   cardContainers.innerHTML = "";
+  loading();
   const url = fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
     .then((data) => {
+      removeActive();
+      cardContainers.innerHTML = "";
+      const activeBtn = document.getElementById(`lesson-btn-${id}`);
+      activeBtn.classList.add("active");
       displayCards(data.plants);
     });
+};
+// loading sectin
+const loading = () => {
+  const cardContainers = document.getElementById("cardContainer");
+  const loading = document.createElement("div");
+  loading.innerHTML = `
+  <h1 class="">loading...</h1>
+  `;
+  cardContainers.append(loading);
+};
+// remove active sectin
+const removeActive = () => {
+  const lessonButtons = document.querySelectorAll(".active");
+  lessonButtons.forEach((btn) => btn.classList.remove("active"));
 };
 // ByClicking on Btn card  display section
 const displayCards = (plantCards) => {
@@ -85,6 +104,7 @@ const deleteCart = (id) => {
 
 // Bydefault card load section
 const loadCard = () => {
+  loading();
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
     .then((allplants) => {
@@ -96,6 +116,8 @@ const displayCard = (cards) => {
   const cardContainers = document.getElementById("cardContainer");
   cardContainers.innerHTML = "";
   for (let card of cards) {
+    const decriptionTxt = card.description;
+    const decription = decriptionTxt.slice(0, 60);
     const cards = document.createElement("div");
     cards.innerHTML = ` 
     <div class=" bg-white shadow-xl max-w-[260px] p-2 rounded-[7px]">
@@ -105,7 +127,7 @@ const displayCard = (cards) => {
             alt=""
           />
           <h1  onclick="loadModal(${card.id})" class="modals text-xl font-bold my-2.5 cursor-pointer"> ${card.name}</h1>
-          <p class="text-wrap text-[12px]">${card.description}</p>
+          <p class="text-wrap text-[12px]">${decription}</p>
           <div class="flex justify-between my-2.5">
             <p class="bg-[#dcfce7] py-1.5 px-2.5 rounded-2xl">${card.category}</p>
             <p class="font-bold"><span>$</span>${card.price}</p>
@@ -159,7 +181,7 @@ const displayButton = (datas) => {
   datas.forEach((data) => {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-        <button onclick="loadTree(${data.id})" class="btn btn-soft btn-primary mb-3">${data.category_name} </button>
+        <button id="lesson-btn-${data.id}" onclick="loadTree(${data.id})" class="btn btn-outline btn-primary mb-3">${data.category_name} </button>
    `;
     btnContainers.append(btnDiv);
     // console.log(data.category_name);
