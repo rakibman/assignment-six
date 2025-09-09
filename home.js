@@ -11,7 +11,6 @@ const loadTree = (id) => {
 // ByClicking on Btn card  display section
 const displayCards = (plantCards) => {
   const cardContainer = document.getElementById("cardContainer");
-
   for (let plantCard of plantCards) {
     const treeByplant = document.createElement("div");
     treeByplant.innerHTML = ` 
@@ -46,8 +45,7 @@ const loadHist = (id) => {
 // history display section
 let totalPrice = 0;
 const displayHis = (data) => {
-  // console.log(data.name);
-  // alert("test");
+  alert(`${data.name} has been added to the cart.`);
   const cartContainer = document.getElementById("cartContainr");
   const cart = document.createElement("div");
   //   console.log(datas);
