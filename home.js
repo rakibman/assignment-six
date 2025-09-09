@@ -3,10 +3,10 @@ const cardContainers = document.getElementById("cardContainer");
 const loadTree = (id) => {
   cardContainers.innerHTML = "";
   loading();
+  removeActive();
   const url = fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
-    .then((data) => {
-      removeActive();
+    .then((data) => { 
       cardContainers.innerHTML = "";
       const activeBtn = document.getElementById(`lesson-btn-${id}`);
       activeBtn.classList.add("active");
@@ -182,7 +182,7 @@ const displayButton = (datas) => {
   datas.forEach((data) => {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-        <button id="lesson-btn-${data.id}" onclick="loadTree(${data.id})" class="btn btn-outline btn-primary mb-3">${data.category_name} </button>
+        <button id="lesson-btn-${data.id}" onclick="loadTree(${data.id})" class="btn btn-outline btn-primary mb-3 w-[200px]">${data.category_name} </button>
    `;
     btnContainers.append(btnDiv);
     // console.log(data.category_name);
