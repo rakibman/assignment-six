@@ -182,7 +182,7 @@ const displayButton = (datas) => {
   datas.forEach((data) => {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-        <button id="lesson-btn-${data.id}" onclick="loadTree(${data.id})" class="btn btn-outline btn-primary mb-3 w-[200px]">${data.category_name} </button>
+        <button id="lesson-btn-${data.id}" onclick="loadTree(${data.id})" class="btn btn-outline btn-primary mb-3 w-[170px]">${data.category_name} </button>
    `;
     btnContainers.append(btnDiv);
     // console.log(data.category_name);
