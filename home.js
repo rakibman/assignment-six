@@ -73,7 +73,7 @@ const deleteCart = (id) => {
   const deleteItem = cartItem.parentElement;
   console.log(cartItem, deleteItem);
   deleteItem.remove();
-}; 
+};
 
 // Bydefault card load section
 const loadCard = () => {
@@ -83,7 +83,7 @@ const loadCard = () => {
       displayCard(allplants.plants);
     });
 };
-// Bydefault card display section 
+// Bydefault card display section
 const displayCard = (cards) => {
   const cardContainers = document.getElementById("cardContainer");
   for (let card of cards) {
@@ -108,6 +108,33 @@ const displayCard = (cards) => {
   }
 };
 loadCard();
+// modal section
+// load modal section 
+const loadModal = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then((res) => res.json())
+    .then((modalData) => {
+      displayModal(modalData.plants);
+    });
+};
+// display modal section 
+const displayModal = (data) => {
+  const modalInfo = document.getElementById("infoOfmodal");
+  const modalInject = document.createElement("div");
+  modalInject.innerHTML = `
+              <div class="bg-white p-3 ">
+                <h1 class="text-2xl font-bold py-3">${data.name}</h1>
+                <img src="${data.image}" class="rounded-xl max-h-[350px] w-full py-3 " alt="">
+                <p><span class="text-xl font-bold py-3">Category:</span>${data.category}</p>
+                <p><span class="text-xl font-bold ">Price:</span>${data.price}</p>
+                <p><span class="text-xl font-bold ">Decription:</span>${data.description}</p>
+              </div>
+  `;
+  modalInfo.innerHTML = "";
+  modalInfo.append(modalInject);
+  console.log(data.name, modalInfo);
+  document.getElementById("my_modal_5").showModal();
+};
 // categoris section starts
 // plants button load section
 const loadButton = () => {
