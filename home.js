@@ -1,4 +1,4 @@
-// ByClicking on button load tree data 
+// ByClicking on button load tree data
 const loadTree = (id) => {
   const cardContainers = document.getElementById("cardContainer");
   cardContainers.innerHTML = "";
@@ -34,7 +34,7 @@ const displayCards = (plantCards) => {
   }
 };
 
-// history load section 
+// history load section
 const loadHist = (id) => {
   const url = fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then((res) => res.json())
@@ -42,7 +42,8 @@ const loadHist = (id) => {
       displayHis(hiscart.plants);
     });
 };
-// history display section 
+// history display section
+let totalPrice = 0;
 const displayHis = (data) => {
   // console.log(data.name);
   alert("test");
@@ -50,20 +51,29 @@ const displayHis = (data) => {
   const cart = document.createElement("div");
   //   console.log(datas);
   cart.innerHTML = `
-    <div class="flex items-center mb-2.5 gap-5 bg-green-300 px-2.5 py-2 rounded-xl">
+    <div id="del${data.id}" class="flex items-center mb-2.5 gap-5 bg-green-300 px-2.5 py-2 rounded-xl">
               <div>
                 <h1>${data.name} </h1>
-                <p><span>৳</span>${data.price} </p>
+                <p>৳<span id="cart_money">${data.price}</span ></p>
               </div>
               <div>
-              <a><button>X</button></a>
+              <button onclick="deleteCart(${data.id})"  class="text-red-500"><i class="fa-solid fa-xmark"></i></button>
               </div>
             </div>
     `;
   cartContainer.append(cart);
-  // }
+  totalPrice = parseInt(data.price) + parseInt(totalPrice);
+  document.getElementById("total_money").innerText = parseInt(totalPrice);
 };
-// this function called from add to cart button 
+// delet section start
+const deleteCart = (id) => {
+
+  // console.log();
+  const element = document.getElementById(`del`);
+  element.remove();
+};
+
+// this function called from add to cart button
 
 // Bydefault card load section
 const loadCard = () => {
@@ -101,4 +111,23 @@ const displayCard = (cards) => {
 loadCard();
 // categoris section starts
 // plants button load section
-
+const loadButton = () => {
+  fetch("https://openapi.programming-hero.com/api/categories")
+    .then((res) => res.json())
+    .then((data) => {
+      displayButton(data.categories);
+    });
+};
+// plants button display section
+const displayButton = (datas) => {
+  const btnContainers = document.getElementById("btnContainer");
+  datas.forEach((data) => {
+    const btnDiv = document.createElement("div");
+    btnDiv.innerHTML = `
+        <button onclick="loadTree(${data.id})" class="btn btn-soft btn-primary mb-3">${data.category_name} </button>
+   `;
+    btnContainers.append(btnDiv);
+    // console.log(data.category_name);
+  });
+};
+loadButton();
