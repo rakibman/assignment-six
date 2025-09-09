@@ -13,6 +13,33 @@ const loadTree = (id) => {
       displayCards(data.plants);
     });
 };
+// ByClicking on Btn card  display section
+const displayCards = (plantCards) => {
+  const cardContainer = document.getElementById("cardContainer");
+  for (let plantCard of plantCards) {
+    const decriptionTxt = plantCard.description;
+    const decription = decriptionTxt.slice(0, 60);
+    const treeByplant = document.createElement("div");
+    treeByplant.innerHTML = ` 
+  <div class="bg-white shadow-xl max-w-[260px]  p-2 rounded-[7px]">
+          <img
+            src="${plantCard.image}"
+            class="w-full max-h-[200px] rounded-[10px]"
+            alt=""
+          />
+          <h1   onclick="loadModal(${plantCard.id})" class="text-xl font-bold my-2.5 cursor-pointer">${plantCard.name}</h1>
+          <p class="text-wrap text-[12px]">${decription}</p>
+          <div class="flex justify-between my-2.5">
+            <p class="bg-[#dcfce7] py-1.5 px-2.5 rounded-2xl">${plantCard.category}</p>
+            <p class="font-bold"><span>$</span>${plantCard.price}</p>
+          </div>
+          <button onclick="loadHist(${plantCard.id})"  class="cartBtns  btn bg-[#15803d] text-white rounded-2xl w-full">Add to Cart</button>
+        </div>
+  `;
+
+    cardContainer.append(treeByplant);
+  }
+};
 // loading sectin
 const loading = () => {
   const cardContainers = document.getElementById("cardContainer");
@@ -27,32 +54,6 @@ const removeActive = () => {
   const lessonButtons = document.querySelectorAll(".active");
   lessonButtons.forEach((btn) => btn.classList.remove("active"));
 };
-// ByClicking on Btn card  display section
-const displayCards = (plantCards) => {
-  const cardContainer = document.getElementById("cardContainer");
-  for (let plantCard of plantCards) {
-    const treeByplant = document.createElement("div");
-    treeByplant.innerHTML = ` 
-  <div class="bg-white shadow-xl max-w-[260px]  p-2 rounded-[7px]">
-          <img
-            src="${plantCard.image}"
-            class="w-full max-h-[200px] rounded-[10px]"
-            alt=""
-          />
-          <h1   onclick="loadModal(${plantCard.id})" class="text-xl font-bold my-2.5 cursor-pointer">${plantCard.name}</h1>
-          <p class="text-wrap text-[12px]">${plantCard.description}</p>
-          <div class="flex justify-between my-2.5">
-            <p class="bg-[#dcfce7] py-1.5 px-2.5 rounded-2xl">${plantCard.category}</p>
-            <p class="font-bold"><span>$</span>${plantCard.price}</p>
-          </div>
-          <button onclick="loadHist(${plantCard.id})"  class="cartBtns  btn bg-[#15803d] text-white rounded-2xl w-full">Add to Cart</button>
-        </div>
-  `;
-
-    cardContainer.append(treeByplant);
-  }
-};
-
 // history load section
 const loadHist = (id) => {
   const url = fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
