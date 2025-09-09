@@ -65,7 +65,7 @@ const loadHist = (id) => {
 // history display section
 let totalPrice = 0;
 const displayHis = (data) => {
-  alert(`${data.name} has been adding to the cart.`);
+  alert(`${data.name} is adding to the cart.`);
   const cartContainer = document.getElementById("cartContainr");
   const cart = document.createElement("div");
   //   console.log(datas);

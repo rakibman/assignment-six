@@ -1,6 +1,3 @@
- 
-
-
 
 #### 1) What is the difference between var, let, and const?
 => var let and const এর মধ্যে পার্থক্য হল var দিয়ে একাধিক বার variable বানানো যায় যা error ase এবং const দিয়ে বানালে তার মান পরিবরতন করা যায় না let দিয়ে বানালে মান পরিবর্তন করা যায় ।
