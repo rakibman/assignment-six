@@ -126,7 +126,7 @@ const displayModal = (data) => {
                 <h1 class="text-2xl font-bold py-3">${data.name}</h1>
                 <img src="${data.image}" class="rounded-xl max-h-[350px] w-full py-3 " alt="">
                 <p><span class="text-xl font-bold py-3">Category:</span>${data.category}</p>
-                <p><span class="text-xl font-bold ">Price:</span>${data.price}</p>
+                <p><span class="text-xl font-bold ">Price:</span><span>৳</span> ${data.price}</p>
                 <p><span class="text-xl font-bold ">Decription:</span>${data.description}</p>
               </div>
   `;
