@@ -8,14 +8,14 @@ const loadTree = (id) => {
       displayCards(data.plants);
     });
 };
-// ByClicking on category Btn card  display section
+// ByClicking on Btn card  display section
 const displayCards = (plantCards) => {
   const cardContainers = document.getElementById("cardContainer");
 
   for (let plantCard of plantCards) {
     const treeByplant = document.createElement("div");
     treeByplant.innerHTML = ` 
-  <div class="bg-white shadow-xl max-w-[260px] max-h-[470px] p-2.5 rounded-[7px]">
+  <div class="bg-white shadow-xl max-w-[260px]  p-2 rounded-[7px]">
           <img
             src="${plantCard.image}"
             class="w-full max-h-[200px] rounded-[10px]"
@@ -46,18 +46,18 @@ const loadHist = (id) => {
 let totalPrice = 0;
 const displayHis = (data) => {
   // console.log(data.name);
-  alert("test");
+  // alert("test");
   const cartContainer = document.getElementById("cartContainr");
   const cart = document.createElement("div");
   //   console.log(datas);
   cart.innerHTML = `
-    <div id="del${data.id}" class="flex items-center mb-2.5 gap-5 bg-green-300 px-2.5 py-2 rounded-xl">
+    <div id="carted${data.id}" class="w-full  flex items-center justify-between mb-2.5 gap-5 bg-green-300 px-2.5 py-2 rounded-xl">
               <div>
                 <h1>${data.name} </h1>
                 <p>৳<span id="cart_money">${data.price}</span ></p>
               </div>
               <div>
-              <button onclick="deleteCart(${data.id})"  class="text-red-500"><i class="fa-solid fa-xmark"></i></button>
+              <button   onclick="deleteCart(${data.id})"  class="text-red-500"><i class="fa-solid fa-xmark"></i></button>
               </div>
             </div>
     `;
@@ -66,14 +66,14 @@ const displayHis = (data) => {
   document.getElementById("total_money").innerText = parseInt(totalPrice);
 };
 // delet section start
+//  this function called from carted history /x/ button
 const deleteCart = (id) => {
-
-  // console.log();
-  const element = document.getElementById(`del`);
-  element.remove();
-};
-
-// this function called from add to cart button
+  // alert("test");
+  const cartItem = document.getElementById(`carted${id}`);
+  const deleteItem = cartItem.parentElement;
+  console.log(cartItem, deleteItem);
+  deleteItem.remove();
+}; 
 
 // Bydefault card load section
 const loadCard = () => {
@@ -83,14 +83,13 @@ const loadCard = () => {
       displayCard(allplants.plants);
     });
 };
-// Bydefault card display section
-
+// Bydefault card display section 
 const displayCard = (cards) => {
   const cardContainers = document.getElementById("cardContainer");
   for (let card of cards) {
     const cards = document.createElement("div");
     cards.innerHTML = ` 
-    <div class=" bg-white shadow-xl max-w-[260px] max-h-[470px] p-2 rounded-[7px]">
+    <div class=" bg-white shadow-xl max-w-[260px] p-2 rounded-[7px]">
           <img
             src="${card.image}"
             class="w-full max-h-[200px] rounded-[10px]"
