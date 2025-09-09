@@ -10,7 +10,7 @@ const loadTree = (id) => {
 };
 // ByClicking on Btn card  display section
 const displayCards = (plantCards) => {
-  const cardContainers = document.getElementById("cardContainer");
+  const cardContainer = document.getElementById("cardContainer");
 
   for (let plantCard of plantCards) {
     const treeByplant = document.createElement("div");
@@ -30,7 +30,8 @@ const displayCards = (plantCards) => {
           <button onclick="loadHist(${plantCard.id})"  class="cartBtns  btn bg-[#15803d] text-white rounded-2xl w-full">Add to Cart</button>
         </div>
   `;
-    cardContainers.append(treeByplant);
+
+    cardContainer.append(treeByplant);
   }
 };
 
@@ -67,12 +68,21 @@ const displayHis = (data) => {
 };
 // delet section start
 //  this function called from carted history /x/ button
+// delete section start
 const deleteCart = (id) => {
-  // alert("test");
   const cartItem = document.getElementById(`carted${id}`);
-  const deleteItem = cartItem.parentElement;
-  console.log(cartItem, deleteItem);
-  deleteItem.remove();
+
+  if (cartItem) {
+    const priceText = cartItem.querySelector("#cart_money").innerText;
+    const itemPrice = parseInt(priceText);
+
+    totalPrice -= itemPrice;
+    if (totalPrice < 0) totalPrice = 0; // just in case
+
+    document.getElementById("total_money").innerText = totalPrice;
+
+    cartItem.remove();
+  }
 };
 
 // Bydefault card load section
@@ -86,6 +96,7 @@ const loadCard = () => {
 // Bydefault card display section
 const displayCard = (cards) => {
   const cardContainers = document.getElementById("cardContainer");
+  cardContainers.innerHTML = "";
   for (let card of cards) {
     const cards = document.createElement("div");
     cards.innerHTML = ` 
@@ -109,7 +120,7 @@ const displayCard = (cards) => {
 };
 loadCard();
 // modal section
-// load modal section 
+// load modal section
 const loadModal = (id) => {
   fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then((res) => res.json())
@@ -117,9 +128,9 @@ const loadModal = (id) => {
       displayModal(modalData.plants);
     });
 };
-// display modal section 
+// display modal section
 const displayModal = (data) => {
-  const modalInfo = document.getElementById("infoOfmodal");
+  const modalInfo = document.getElementById("infoOfModal");
   const modalInject = document.createElement("div");
   modalInject.innerHTML = `
               <div class="bg-white p-3 ">

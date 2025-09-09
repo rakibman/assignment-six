@@ -106,9 +106,14 @@
           <!-- button container sectin  -->
           <div id="btnContainer" class="md:col-span-1"></div>
           <!-- card container section  -->
-          <div id="cardContainer" class="grid md:grid-cols-3 gap-4 md:col-span-3"></div>
-          <div class="bg-white py-2 px-4 md:col-span-1 rounded-xl">
-            <!-- curt history section  -->
+          <div
+            id="cardContainer"
+            class="grid md:grid-cols-3 gap-4 md:col-span-3"
+          >
+            <h1 class="">loading...</h1>
+          </div>
+          <!-- curt history section  -->
+          <div class="bg-white py-2 px-4 md:col-span-1 rounded-xl"> 
             <h1 class="text-2xl font-bold py-4">Your Curt</h1>
             <div class="gap-x-3.5" id="cartContainr"></div>
             <div class="flex justify-between">
@@ -121,9 +126,7 @@
         <!-- Open the modal using ID.showModal() method -->
         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
           <div class="modal-box">
-            <div id="infoOfmodal">
-              
-            </div>
+            <div id="infoOfModal"></div>
             <div class="modal-action">
               <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
